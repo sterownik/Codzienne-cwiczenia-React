@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //strzalkowa
+      const fn = (item) => {
+        console.log(item);
+      };
+      fn("hej");
+      const users = ["adam", "wojtek", "marian"];
+      const userString = users.join("+");
+      console.log(userString);
+      const newUser = "jozek";
+      //dodaje zwraca nowa tablice
+      console.log(users.concat(newUser));
+      console.log(users);
+      //operator spread
+      const ALLusers = [...users, "kamil"]; //łaczenie
+      console.log(ALLusers);
+
+      //map iterator
+      const userFirstLetterUppercase = users.map((user) => {
+        return user[0].toUpperCase(); //jak sa nawiasy blokowe to musze dac return
+      });
+      console.log(userFirstLetterUppercase);
+      const numbers = [1, 2, 3, 4, 5];
+      const betterNumbers = numbers.map((number) => number * 3); //bez nawiasow blokowych jest return
+      console.log(betterNumbers);
+
+      //forEach
+      numbers.forEach((number) => console.log(`raz dwa to${number * 2} hehe`));
+      let totalNumbers = 0;
+      numbers.forEach((number) => (totalNumbers += number));
+      console.log(totalNumbers);
+      const section = document.createElement("section");
+      //pierwszy element to tablica drugi to na ktorym elemencie pracujemy a trzeci to tablica na ktorej pracujemy
+      numbers.forEach((number, index, array) => {
+        console.log(array.length);
+
+        section.innerHTML += `<h1> ${index + 1}</h1>
+        <p>wiek:${number}</p>`;
+        if (index === array.length - 1) {
+          document.body.appendChild(section);
+          console.log("u");
+        }
+      });
+      console.log(section);
+      //sprawdza
+      const bigData = [22, 33, 12, 54, 23235, 23, 4];
+      //jesli true to trafi do nowej tablicy
+      const evalBigData = bigData.filter((number) => number % 2 == 0);
+      console.log(evalBigData);
+      const imiona = ["wojtek", "marian", "tomek", "rafal"];
+      const NameWithK = imiona.filter((name) => {
+        return name.indexOf("k") > -1; //przeszukuje czy znajduje sie w nim k jezeli sie znajuje to da nam index od 0 idzie dlatego jak nie ma to -1
+      });
+      console.log(NameWithK);
+
+      const customers = [
+        { name: "wojtek", age: 14 },
+        { name: "wojtek", age: 11 },
+        { name: "wojtek", age: 26 },
+        { name: "wojtek", age: 26 },
+        { name: "basia", age: 28 },
+        { name: "marian", age: 21 },
+      ];
+      //ppodaje pierwszy
+      const isMoreThen24 = customers.findIndex((customer) => customer.age > 24);
+      console.log(isMoreThen24);
+
+      const isMoreThen21 = customers.find((customer) => customer.age > 24);
+      console.log(isMoreThen21); //zwraca pierwszy i zwroci nam element
+
+      class City {
+        constructor(name) {
+          this.name = name;
+        }
+        showName() {
+          console.log(this.name);
+        }
+      }
+      const Rzeszow = new City("Rzeszów");
+      const Warszawa = new City("Warszawa");
+      Rzeszow.showName();
+      // console.log(Rzeszow.name);
+      // console.log(Warszawa.name);
+      class Person {
+        constructor(name) {
+          this.name = name;
+        }
+      }
+      class Student extends Person {
+        constructor(name = "", degrees = []) {
+          //co mam zrobi jesli przy wywolaniu nie zostal podany argument
+          super(name);
+          this.degrees = degrees;
+        }
+        showDegrees() {
+          const complete = this.degrees.filter((degree) => degree > 2);
+          console.log(`zaliczył ${complete.length} przedmiotow`);
+        }
+      }
+      let Wojtek = new Student("wojtek", [2, 2, 3, 4, 5, 2, 3, 4, 2, 1]);
+      Wojtek.showDegrees();
+
+      const dog = {
+        name: "Rocky",
+        showName() {
+          console.log(`imie psa to ${this.name}`);
+        },
+      };
+      dog.showName();
+      const dogName = dog.showName.bind(dog); //wymuszam wiazanie this na doga
+      dogName();
+      const cat = {
+        kids: ["lucek", "łapciuch"],
+        showKidsName() {
+          console.log(`kot ma potomstwo ${this.kids}`);
+          const showKidsNumber = function () {
+            console.log(this.kids.length);
+          }.bind(this); // w tym momencie tthis ma byc w tym thisem ktory jest w tym momencie, aktualnie w danym momencie
+          showKidsNumber();
+        },
+      };
+      cat.showKidsName();
+    </script>
+  </body>
+</html>
