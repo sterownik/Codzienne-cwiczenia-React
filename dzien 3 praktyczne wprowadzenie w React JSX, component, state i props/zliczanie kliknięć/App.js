@@ -2,6 +2,7 @@ const Panel = (props) => {
   return (
     <>
       <h1>Liczba kliknieć: {props.liczba}</h1>
+      {props.wynik > 10 ? <h1>Przekroczono 10</h1> : null}
       <h1>Wynik: {props.wynik}</h1>
     </>
   );
@@ -105,6 +106,7 @@ class Licznik extends React.Component {
           title={"reset"}
           number={-1}
         />
+        {/* ODZIELNE KOMPONENTY */}
         <Panel liczba={this.state.liczba} wynik={this.state.wynik} />
       </>
     );
