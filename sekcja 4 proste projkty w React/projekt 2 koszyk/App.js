@@ -13,6 +13,7 @@ const Buttons = (props) => {
 // liniowe dodawanie styli w react
 const Panel = (props) => {
   const { quantity } = props;
+
   const style =
     quantity == 0
       ? {
