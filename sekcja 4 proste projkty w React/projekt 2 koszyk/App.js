@@ -10,9 +10,22 @@ const Buttons = (props) => {
     </>
   );
 };
-
+// liniowe dodawanie styli w react
 const Panel = (props) => {
-  return <h1>{props.quantity}</h1>;
+  const { quantity } = props;
+  return (
+    <h1
+      style={
+        quantity == 0
+          ? {
+              opacity: 0.3,
+            }
+          : {}
+      }
+    >
+      {quantity}
+    </h1>
+  );
 };
 const BuyNow = (props) => {
   return <button onClick={props.click}>Kup teraz</button>;
