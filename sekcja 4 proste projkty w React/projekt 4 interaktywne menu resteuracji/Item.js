@@ -1,3 +1,10 @@
 const Item = (props) => {
-  return <li key={props.key}>{props.name}</li>;
+  return (
+    <li
+      className={props.active ? "enabled" : "disabled"}
+      onClick={() => props.click(props.id)}
+    >
+      {props.name}
+    </li>
+  );
 };
