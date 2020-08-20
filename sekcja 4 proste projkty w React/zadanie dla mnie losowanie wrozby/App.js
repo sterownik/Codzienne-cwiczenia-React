@@ -4,14 +4,14 @@ class App extends React.Component {
     view: "",
     adding: "",
   };
-  randPrediction = () => {
+  handleRandPrediction = () => {
     let rand = Math.floor(Math.random() * this.state.predictions.length);
 
     this.setState({
       view: this.state.predictions[rand],
     });
   };
-  addPrediction = () => {
+  handleAddPrediction = () => {
     this.setState((prev) => ({
       predictions: [...prev.predictions, this.state.adding],
       adding: "",
@@ -28,10 +28,10 @@ class App extends React.Component {
     // console.log();
     return (
       <>
-        <button onClick={this.randPrediction}>Zobacz wróżbę</button>
+        <button onClick={this.handleRandPrediction}>Zobacz wróżbę</button>
         <br />
         <input onChange={this.handleChangeAdd} />
-        <button onClick={this.addPrediction}>Dodaj wróżbe</button>
+        <button onClick={this.handleAddPrediction}>Dodaj wróżbe</button>
         <h1>{this.state.view}</h1>
       </>
     );
