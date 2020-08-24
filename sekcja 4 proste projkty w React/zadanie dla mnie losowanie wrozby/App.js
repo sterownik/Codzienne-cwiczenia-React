@@ -19,6 +19,7 @@ class App extends React.Component {
         // dokladnie kopia tablicy
         adding: "",
       }));
+      
       alert("aktualnie mamy wróżby: " + this.state.predictions);
     }
   };
