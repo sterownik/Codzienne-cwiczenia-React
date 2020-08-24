@@ -13,7 +13,7 @@ const Person = (props) => {
 class List extends React.Component {
   state = {
     persons: [
-      { id: 1, name: "Jan K" },
+      { id: 12, name: "Jan K" },
       { id: 2, name: "Piotr C" },
       { id: 3, name: "Marysia W" },
       { id: 4, name: "John S" },
@@ -25,11 +25,11 @@ class List extends React.Component {
     ],
   };
   handleDelete = (id) => {
-    // console.log(id);
     const List = this.state.persons;
     const ListToSee = List.filter((item) => {
       return item.id != id;
     });
+    // metoda splice people.splice(index,1) usuwa od indexu jeden element
 
     this.setState({
       persons: ListToSee,
