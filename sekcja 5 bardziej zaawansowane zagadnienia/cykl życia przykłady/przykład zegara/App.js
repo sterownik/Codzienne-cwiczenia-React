@@ -1,36 +1,61 @@
-class Clock extends React.Component {
-  state = {
-    time: {
-      hours: 12,
-      minutes: 34,
-      second: 46,
-    },
-  };
-  componentDidMount() {
-    let self = this;
-    setInterval(
-      function () {
-        let today = new Date();
-        let h = today.getHours();
-        let m =
-          today.getMinutes() < 10
-            ? "0" + today.getMinutes()
-            : today.getMinutes();
-        let s =
-          today.getSeconds() < 10
-            ? "0" + today.getSeconds()
-            : today.getSeconds();
-        self.setState({
-          time: {
-            hours: h,
-            minutes: m,
-            second: s,
-          },
-        });
-      },
+const Switch = (props) => {
+  return (
+    <button onClick={props.click}>{props.title ? "Wyłącz" : "Włącz"}</button>
+  );
+};
 
-      1000
+class App extends React.Component {
+  state = {
+    click: true,
+  };
+  handleClick = () => {
+    this.setState({
+      click: !this.state.click,
+    });
+  };
+  render() {
+    return (
+      <>
+        <Switch title={this.state.click} click={this.handleClick} />
+
+        {this.state.click && <Clock />}
+      </>
     );
+  }
+}
+
+class Clock extends React.Component {
+  interval = "";
+  state = {
+    time: this.getTime(),
+  };
+  getTime() {
+    let today = new Date();
+    let hours = today.getHours();
+    let minutes =
+      today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+    let second =
+      today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds();
+    return {
+      hours: hours,
+      minutes: minutes,
+      second: second,
+    };
+  }
+  updateTime() {
+    this.setState({
+      time: this.getTime(),
+    });
+  }
+  componentDidMount() {
+    const index = setInterval(this.updateTime.bind(this), 1000);
+    this.interval = index;
+  }
+  //   zeby this byl odpowiedni, bo setInterval powoduje ze this jest window
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    console.log("odmontowanie");
   }
 
   render() {
@@ -38,11 +63,11 @@ class Clock extends React.Component {
     return (
       <>
         <p>
-          {hours}:{minutes}:{second}
+          {hours} : {minutes} : {second}
         </p>
       </>
     );
   }
 }
 
-ReactDOM.render(<Clock />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
