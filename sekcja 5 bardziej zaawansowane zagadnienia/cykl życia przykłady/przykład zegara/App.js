@@ -57,6 +57,7 @@ class Clock extends React.Component {
     clearInterval(this.interval);
     console.log("odmontowanie");
   }
+  // bez tego jest ostrzeżenie bo jest Interval
 
   render() {
     const { hours, minutes, second } = this.state.time;
