@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Example</title>
+    <style>
+      .circle {
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        background-color: brown;
+        position: relative;
+      }
+
+      div.circle div {
+        position: absolute;
+        width: 5px;
+        left: 50%;
+        transform-origin: bottom;
+        border-radius: 50%;
+      }
+      .handSec {
+        top: 0px;
+        height: 150px;
+        background-color: white;
+      }
+      .handMin {
+        height: 100px;
+        background-color: black;
+        top: 50px;
+      }
+      .handHour {
+        height: 80px;
+        background-color: gold;
+        top: 70px;
+      }
+    </style>
   </head>
 
   <body>

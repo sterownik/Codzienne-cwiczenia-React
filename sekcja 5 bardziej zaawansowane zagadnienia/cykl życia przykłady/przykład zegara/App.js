@@ -61,11 +61,29 @@ class Clock extends React.Component {
 
   render() {
     const { hours, minutes, second } = this.state.time;
+
     return (
       <>
         <p>
           {hours} : {minutes} : {second}
         </p>
+        <div className="circle">
+          <div
+            style={{ transform: `rotate(${(second / 60) * 360}deg)` }}
+            className="hand handSec"
+          ></div>
+
+          <div
+            style={{ transform: `rotate(${(minutes / 60) * 360}deg)` }}
+            className="hand handMin"
+          ></div>
+          <div
+            style={{
+              transform: `rotate(${(360 / 100) * ((hours / 12) * 100)}deg)`,
+            }}
+            className="hand handHour"
+          ></div>
+        </div>
       </>
     );
   }
