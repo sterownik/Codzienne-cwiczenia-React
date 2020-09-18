@@ -1,0 +1,10 @@
+p {
+  font-family: "Courier New", Courier, monospace;
+}
+div.border {
+  border-top: 2px solid black;
+  margin: 10px;
+}
+img {
+  padding: 10px;
+}
