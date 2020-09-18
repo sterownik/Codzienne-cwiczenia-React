@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "./Button";
+// import Button from "./Button";
 import Panel from "./Panel";
 import "./App.css";
 import AddPerson from "./AddPerson";
@@ -10,15 +10,15 @@ class App extends Component {
   };
   handleClickAddPerson = () => {
     fetch("https://randomuser.me/api/?results=1")
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
       .then((result) => {
-        let data = this.state.data;
-        let finaldata = data.concat(result.results);
-
-        this.setState({
-          data: finaldata,
-        });
-        // console.log();
+        this.setState((prevState) => ({
+          data: prevState.data.concat(result.results),
+        }));
       })
       .catch(() =>
         console.log(
@@ -30,7 +30,11 @@ class App extends Component {
   };
   handleClick = () => {
     fetch("https://randomuser.me/api/?results=5")
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
       .then((result) => {
         this.setState({
           data: result.results,
@@ -59,7 +63,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Button onclick={this.handleClick} />
+        {/* <Button onclick={this.handleClick} /> */}
         <AddPerson onclick={this.handleClickAddPerson} />
         {tab}
       </div>
